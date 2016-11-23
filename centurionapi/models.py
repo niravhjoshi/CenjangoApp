@@ -14,7 +14,7 @@ class datewisedetailknownerrcounts(models.Model):
     err_counts = models.IntegerField()
 
     def __str__(self):
-        return "{}  {}  {}  {}  {}  {}".format(self.cust_name,self.month_name,self.err_name,self.appsrv_name,self.date_date,self.err_counts)
+        return "Customer Name=> {} |  Months Name=> {} | Error Name=> {} | App Server Name=> {} |  Date of Occurance=> {} | Errors Count=> {} |".format(self.cust_name,self.month_name,self.err_name,self.appsrv_name,self.date_date,self.err_counts)
 
 @python_2_unicode_compatible
 class datewiseerrcounts(models.Model):
