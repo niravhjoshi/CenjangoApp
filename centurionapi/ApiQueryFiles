@@ -1,0 +1,22 @@
+http://127.0.0.1:8000/centurionapi/dwercnt?fields=cust_name,date_stamp,month_name,appsrv_name,err_counts&cust_name='CAP'
+
+
+query filter by customer name:-
+http://127.0.0.1:8000/centurionapi/dwercnt?fields=cust_name,date_stamp,month_name,appsrv_name,err_counts&cust_name=CAP
+
+query fileter by month name :-
+http://127.0.0.1:8000/centurionapi/dwercnt?fields=cust_name,date_stamp,month_name,appsrv_name,err_counts&month_name=June
+
+query filter by appserver name:-
+http://127.0.0.1:8000/centurionapi/dwercnt?fields=cust_name,date_stamp,month_name,appsrv_name,err_counts&appsrv_name=App1
+
+query filter by Date time stamp:-
+http://127.0.0.1:8000/centurionapi/dwercnt?fields=cust_name,date_stamp,month_name,appsrv_name,err_counts&date_stamp=2016-05-25
+
+
+Query with multiple filters:-
+http://127.0.0.1:8000/centurionapi/dwercnt?fields=cust_name,date_stamp,month_name,appsrv_name,err_counts&date_stamp=2016-05-25&cust_name=IBMCons
+
+
+
+
