@@ -29,7 +29,12 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'underscore',
+    'd3#3.5.5',
+    'nvd3#1.7.1',
+)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'centurionapi',
-    'rest_framework'
+    'djangobower',
+    'rest_framework',
+    'django_nvd3'
 ]
 
 MIDDLEWARE = [
@@ -123,5 +130,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+BOWER_PATH = '/usr/local/bin/bower'
 STATIC_URL = '/static/'
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
