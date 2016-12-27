@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+print BASE_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -33,6 +33,7 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
     'd3#3.5.5',
+    'bootstrap',
     'nvd3#1.7.1',
 )
 INSTALLED_APPS = [
@@ -128,11 +129,23 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Django extensions
+try:
+    import django_extensions
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS = INSTALLED_APPS + ('django_extensions',)
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', '../components/bower_components/media')
 BOWER_PATH = '/usr/local/bin/bower'
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+#STATICFILES_DIR = os.path.join(BASE_DIR, 'static','static')
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

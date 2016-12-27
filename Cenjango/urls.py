@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from centurionapi import views
+from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
+    url(r'^$',views.home,name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^centurionapi/',include('centurionapi.urls'))
+    url(r'^centurionapi/',include('centurionapi.urls')),
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+

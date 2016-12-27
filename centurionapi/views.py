@@ -9,6 +9,13 @@ from operator import itemgetter
 import operator
 import itertools
 
+#Home page rendering method
+def home(request):
+    return render_to_response('centurionapi/Home.html')
+
+def about(request):
+    return render_to_response('centurionapi/about.html')
+
 def get_customererrpiechart(request):
 
     url = "http://127.0.0.1:8000/centurionapi/dwercnt?fields=cust_name,err_counts"
@@ -67,6 +74,79 @@ def get_customererrpiechart(request):
     }
     return render_to_response('JsonDatapiechart.html', data)
 
+
+
+
+app1url = "http://127.0.0.1:8000/centurionapi/dwercnt?fields=appsrv_name,err_counts&appsrv_name=App1"
+app2url = "http://127.0.0.1:8000/centurionapi/dwercnt?fields=appsrv_name,err_counts&appsrv_name=App2"
+app98url = "http://127.0.0.1:8000/centurionapi/dwercnt?fields=appsrv_name,err_counts&appsrv_name=App98"
+app99url = "http://127.0.0.1:8000/centurionapi/dwercnt?fields=appsrv_name,err_counts&appsrv_name=App99"
+
+
+def get_appsrvnameerrcntschart(request):
+    xdata = []
+    ydata = []
+    appurls=[]
+    appurls.append(app1url)
+    appurls.append(app2url)
+    appurls.append(app98url)
+    appurls.append(app99url)
+    print appurls
+    for url in appurls:
+        print url
+        response = urllib2.urlopen(url)
+        data = simplejson.load(response)
+
+        # group the departments in lists
+        list1 = []
+        for key, items in itertools.groupby(data, operator.itemgetter('appsrv_name')):
+            list1.append(list(items))
+            #print "After grouping the list by customer_name:"
+            #pprint.pprint(list1)  # test
+            #print "-" * 50
+
+            # Sum of error counts by customer group
+        err_list = []
+        for item in list1:
+            # get customer name:
+            customername = item[0]['appsrv_name']
+            #print  customername
+            size = len(item)
+            #print  size
+            sum = 0
+            for k in range(size):
+                sum += int((item[k]['err_counts']))
+            err_list.append((customername, sum))
+            #print err_list
+        for item in err_list:
+            #print "CustomerName   %s has an total error  %d" % (item[0], item[1])
+            xdata.append(item[0])
+            ydata.append(item[1])
+        print xdata
+        print ydata
+
+    color_list = ['#5d8aa8', '#e32636', '#efdecd', '#ffbf00', '#ff033e', '#a4c639',
+                  '#b2beb5', '#8db600', '#7fffd4', '#ff007f', '#ff55a3', '#5f9ea0']
+    extra_serie = {
+        "tooltip": {"y_start": "", "y_end": " Errors Count"},
+        "color_list": color_list
+    }
+    chartdata = {'x': xdata, 'y1': ydata, 'extra1': extra_serie}
+    charttype = "pieChart"
+    chartcontainer = 'piechart_container'  # container name
+
+    data = {
+        'charttype': charttype,
+        'chartdata': chartdata,
+        'chartcontainer': chartcontainer,
+        'extra': {
+            'x_is_date': False,
+            'x_axis_format': '',
+            'tag_script_js': True,
+            'jquery_on_ready': False,
+        }
+    }
+    return render_to_response('AppSrvErrs.html', data)
 
 
 def demo_linewithfocuschart(request):

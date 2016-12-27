@@ -1,1 +1,3 @@
 *.pyc
+components/
+static/

@@ -1,32 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to JBoss LogAnalysis:-</title>
-</head>
-<body ng-app="centurionapi.api">
-{% verbatim %}
-<div ng-controller = "Centurionapicontroller">
-    {{ person.name }} is {{ person.age }} years old.
-</div>
-{% endverbatim %}
+{% extends 'base.html' %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script>
-    (function () {
-        'use strict';
-        angular.module('centurionapi.api', [])
-                .controller('Centurionapicontroller', [ '$scope', Centurionapicontroller]);
+{% block jumobtron %}
 
-        function Centurionapicontroller($scope) {
-            $scope.person = {
-                        name : 'Nirav Joshi',
-                        age :32
+        <div class="jumbotron">
+        <h1>Theme example</h1>
+        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+      </div>
 
-                    };
-        }
-    }());
-</script>
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+
+<h1>Hello World</h1>
+{% endblock %}
