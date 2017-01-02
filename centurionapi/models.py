@@ -16,7 +16,7 @@ class datewisedetailknownerrcounts(models.Model):
     def __str__(self):
         return "Customer Name=> {} |  Months Name=> {} | Error Name=> {} | App Server Name=> {} |  Date of Occurance=> {} | Errors Count=> {} |".format(self.cust_name,self.month_name,self.err_name,self.appsrv_name,self.date_date,self.err_counts)
 
-@python_2_unicode_compatible
+#@python_2_unicode_compatible
 class datewiseerrcounts(models.Model):
     cust_name = models.CharField(max_length=50)
     date_stamp = models.DateField()
@@ -24,5 +24,10 @@ class datewiseerrcounts(models.Model):
     appsrv_name = models.CharField(max_length=50)
     err_counts = models.IntegerField()
 
-    def __str__(self):
-        return "List {}".format(self.cust_name)
+    #def __str__(self):
+    #    return "List {}".format(self.cust_name)
+
+class temptab(models.Model):
+    cust_name = models.CharField(max_length=45)
+    err_cnts = models.IntegerField()
+    newerr_cnts = models.IntegerField()

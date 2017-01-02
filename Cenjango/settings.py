@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'centurionapi',
     'djangobower',
+    'chartit',
+    'markup_deprecated',
+    'syntax_colorize',
     'rest_framework',
     'django_nvd3'
 ]

@@ -1,17 +1,20 @@
 {% extends "base.html" %}
-  {% block content %}
   {% load nvd3_tags %}
+{% block jumobtron %}
+    <h2 class="featurette-heading">AppServer Errors Count</h2>
  <head>
 {% include_chart_jscss %}
 {% load_chart charttype chartdata chartcontainer extra  %}
 
  </head>
+
+
  <body>
-  {% include_container chartcontainer 600 600 %}
+
+  {% include_container chartcontainer 500 500 %}
 
  </body>
 {% endblock %}
-
 
 
 

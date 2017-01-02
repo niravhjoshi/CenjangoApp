@@ -2,12 +2,105 @@ from django.shortcuts import render,render_to_response
 import random
 import datetime
 import time
+import models
+from django.db.models import Sum, Avg
 import urllib2,simplejson
 from itertools import groupby
 from collections import Counter,defaultdict
 from operator import itemgetter
 import operator
+from .models import temptab,datewiseerrcounts
 import itertools
+from chartit import DataPool, Chart,PivotDataPool,PivotChart
+from .decorators import add_source_code_and_doc
+
+
+@add_source_code_and_doc
+def month_appsrv_pivot(_,title,code,doc,sidebar_items):
+    # start_code
+    ds = PivotDataPool(
+          series=[
+           {'options': {
+              'source': datewiseerrcounts.objects.all(),
+              'categories': [
+                'cust_name',
+                'month_name'],
+              'legend_by': 'appsrv_name'},
+            'terms': {
+              'Total_ErrCounts': Sum('err_counts')}}])
+
+    pivcht = PivotChart(
+              datasource=ds,
+              series_options=[
+                {'options': {
+                   'type': 'column',
+                   'stacking': True,
+                   'xAxis': 0,
+                   'yAxis': 0},
+                 'terms': ['Total_ErrCounts']}])
+    # end_code
+
+    return render_to_response('PivotChart.html',
+                              {
+                                  'chart_list': pivcht,
+                                  'code': code,
+                                  'title': title,
+                                  'doc': doc,
+                                  'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def month_appsrv_cntsit(_,title,code,doc,sidebar_items):
+    # start_code
+    ds = DataPool(
+            series=[{
+                'options': {
+                    'source': datewiseerrcounts.objects.all()
+                },
+                'terms': [
+                    'cust_name',
+                    'err_counts',
+                    'month_name','appsrv_name'
+
+                ]
+            }]
+    )
+
+    cht = Chart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'line',
+                    'stacking': False
+                },
+                'terms': {
+                    'month_name': [
+                        'err_counts'
+
+                    ]
+                }
+            }],
+            chart_options={
+                'title': {
+                    'text': 'Error Data For JBoss Log Analysis'
+                },
+                'xAxis': {
+                    'title': {
+                        'text': 'customer Name'
+                    }
+                }
+            }
+    )
+    # end_code
+    return render_to_response('NewChart.html',
+                              {
+                                'chart_list': cht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})
+
+
 
 #Home page rendering method
 def home(request):
