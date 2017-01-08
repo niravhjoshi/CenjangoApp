@@ -15,6 +15,109 @@ from chartit import DataPool, Chart,PivotDataPool,PivotChart
 from .decorators import add_source_code_and_doc
 
 
+
+@add_source_code_and_doc
+def date_month_pivot(_,title,code,doc,sidebar_items):
+    #start_code
+    ds = PivotDataPool(
+        series=[
+            {'options':{
+              'source':datewiseerrcounts.objects.all(),
+                'categories':[
+
+                             'month_name'],
+                'legend_by': 'date_stamp'},
+                'terms': {'Total_ErrCounts': Sum('err_counts')
+            }}])
+
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0},
+                'terms': ['Total_ErrCounts']}])
+# end_code
+
+    return render_to_response('centurionapi/graphs/DateWiseErr.html',
+                              {
+                                  'chart_list': pivcht,
+                                  'code': code,
+                                  'title': title,
+                                  'doc': doc,
+                                  'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def cust_month_pivot(_,title,code,doc,sidebar_items):
+    #start_code
+    ds = PivotDataPool(
+        series=[
+            {'options':{
+              'source':datewiseerrcounts.objects.all(),
+                'categories':[
+                             'appsrv_name',
+                             'month_name'],
+                'legend_by': 'cust_name'},
+                'terms': {'Total_ErrCounts': Sum('err_counts')
+            }}])
+
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0},
+                'terms': ['Total_ErrCounts']}])
+# end_code
+
+    return render_to_response('centurionapi/graphs/CustPivotChart.html',
+                              {
+                                  'chart_list': pivcht,
+                                  'code': code,
+                                  'title': title,
+                                  'doc': doc,
+                                  'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def appsrv_month_pivot(_,title,code,doc,sidebar_items):
+    #start_code
+    ds = PivotDataPool(
+        series=[
+            {'options':{
+              'source':datewiseerrcounts.objects.all(),
+                'categories':[
+                             'cust_name',
+                             'month_name'],
+                'legend_by': 'appsrv_name'},
+                'terms': {'Total_ErrCounts': Sum('err_counts')
+            }}])
+
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0},
+                'terms': ['Total_ErrCounts']}])
+# end_code
+
+    return render_to_response('centurionapi/graphs/AppsrvPivotChart.html',
+                              {
+                                  'chart_list': pivcht,
+                                  'code': code,
+                                  'title': title,
+                                  'doc': doc,
+                                  'sidebar_items': sidebar_items})
+
+
 @add_source_code_and_doc
 def month_appsrv_pivot(_,title,code,doc,sidebar_items):
     # start_code
@@ -24,8 +127,8 @@ def month_appsrv_pivot(_,title,code,doc,sidebar_items):
               'source': datewiseerrcounts.objects.all(),
               'categories': [
                 'cust_name',
-                'month_name'],
-              'legend_by': 'appsrv_name'},
+                'appsrv_name'],
+              'legend_by': 'month_name'},
             'terms': {
               'Total_ErrCounts': Sum('err_counts')}}])
 
@@ -40,7 +143,7 @@ def month_appsrv_pivot(_,title,code,doc,sidebar_items):
                  'terms': ['Total_ErrCounts']}])
     # end_code
 
-    return render_to_response('PivotChart.html',
+    return render_to_response('centurionapi/graphs/MonthPivotChart.html',
                               {
                                   'chart_list': pivcht,
                                   'code': code,
@@ -92,7 +195,7 @@ def month_appsrv_cntsit(_,title,code,doc,sidebar_items):
             }
     )
     # end_code
-    return render_to_response('NewChart.html',
+    return render_to_response('centurionapi/graphs/NewChart.html',
                               {
                                 'chart_list': cht,
                                 'code': code,
@@ -312,4 +415,4 @@ def demo_piechart(request):
             'jquery_on_ready': False,
         }
     }
-    return render_to_response('PieChart.html', data)
+    return render_to_response('centurionapi/graphs/PieChart.html', data)

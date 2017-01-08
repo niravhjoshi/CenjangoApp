@@ -1,7 +1,45 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block jumobtron %}
-<h1>About JBoss Log Analysis About Page</h1>
+<h1>About JBoss Log Analysis</h1>
 {% endblock %}
 {% block content %}
-<h1>Developed by Nirav Joshi</h1>
+<h2>Developed by Nirav Joshi</h2>
+    <div>
+        <p><b>Purpose of Project:</b>
+
+Problem statement to analyzing logs of CloudMatrix production system on month to crawl logs for ERROR messages and file unique error messages tickets to engineering department for their review and input for improving quality of overall product.
+    </p>
+        <p><b>Challenges:-</b>
+There are four application servers and each them have 31 logs files created on monthly basis.
+Decompress these files and put it into appropriate directory.
+Now crawl through these each of log files for each individual servers (App1, App2, App98 and App99) found out lines which has “ERROR” key word in it.
+Now populate numbers for ERROR reported in each day on each app servers.
+Once we have “ERROR” from app servers match them against the known errors from Known Error dictionary file.
+After comparison find out new error reported and report it back to JIRA system and update Known Error dictionary file.
+    </p>
+        <p><b>Entities to Include:-</b>
+  Log files for each app servers.
+  Decompress of log files from each app servers.
+  Consolidated ERROR files from each app servers.
+  Removal of known errors from log file
+  Focus on new error counts and filing it.
+  Updating to Error dictionary.
+    </p>
+        <p>
+            <b>Public GIT Repo Link:</b>
+<a href="https://github.com/niravhjoshi/ProjectCodeROCK" target="_blank">Git Repo</a>
+<p>
+        <b>Benefit:</b>
+Reduce time and efforts in order to crawl through logs which takes around 10 days of work can be done in hour time.
+Creating Error Repository will also give us an opportunity to track close about regression of errors in new releases.
+</p>
+        <p><b>Design Diagram:</b>
+            <img class="img-responsive" width="742" src='{% static "/media/DesignDocumentLA.png" %}'>
+    <p>
+        Sustaining Engineer team has started exploring Jboss Logs from  WK production system  and analyzing it into special category "LogAnalysis" or "ROCKWALL" project:-
+About this project started back in month of May -2016  as beta project to download all the logs for WK production cloudMatrix instances from all the nodes which includes (App1,App2,App98 and App99)
+Slice and dice logs for errors and severe errors exceptions stack and create unique error list which can be potential errors in product. Aim of this project is not only just finding errors but also find errors and related stack trace and create JIRA ticket for unique errors and get help from engineering team to analyze to impact of error and how to mitigate it. By doing so we will be over all improving product quality and silent error which were never get traction get noticed and developers  & engineering team are diligently follow issue and fixed for it.
+    </p>
+    </div>
 {% endblock %}
