@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'markup_deprecated',
     'syntax_colorize',
     'rest_framework',
-    'django_nvd3'
+    'django_nvd3',
+    'LogConfiguration'
 ]
 
 MIDDLEWARE = [

@@ -9,7 +9,7 @@ from itertools import groupby
 from collections import Counter,defaultdict
 from operator import itemgetter
 import operator
-from .models import temptab,datewiseerrcounts
+from .models import datewiseerrcounts
 import itertools
 from chartit import DataPool, Chart,PivotDataPool,PivotChart
 from .decorators import add_source_code_and_doc

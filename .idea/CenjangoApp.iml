@@ -21,6 +21,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/centurionapi/templates" />
+        <option value="$MODULE_DIR$/LogConfiguration/templates" />
       </list>
     </option>
   </component>

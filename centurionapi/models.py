@@ -27,7 +27,3 @@ class datewiseerrcounts(models.Model):
     #def __str__(self):
     #    return "List {}".format(self.cust_name)
 
-class temptab(models.Model):
-    cust_name = models.CharField(max_length=45)
-    err_cnts = models.IntegerField()
-    newerr_cnts = models.IntegerField()
