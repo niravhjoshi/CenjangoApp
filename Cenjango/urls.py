@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^$',views.home,name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^centurionapi/',include('centurionapi.urls')),
-    url(r'^logconfig/',include('LogConfiguration.urls'))
+    url(r'^logconfig/',include('LogConfiguration.urls')),
+    url(r'^logstatus/',include('LogStatus.urls'))
 
 ]
 

@@ -23,6 +23,7 @@ class Error_Reporting_JIRA(models.Model):
     reoprt_date = models.DateField()
     CM_JIRA_issue = models.CharField(max_length=200)
     existing_CM_issue = models.BooleanField()
+    existing_CM_issue_resolved = models.BooleanField(default=True)
     error_repeat_app1 = models.IntegerField()
     error_repeat_app2 = models.IntegerField()
     error_repeat_app98 = models.IntegerField()

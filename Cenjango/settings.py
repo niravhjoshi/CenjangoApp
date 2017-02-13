@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'syntax_colorize',
     'rest_framework',
     'django_nvd3',
-    'LogConfiguration'
+    'LogConfiguration',
+    'LogStatus'
 ]
 
 MIDDLEWARE = [
