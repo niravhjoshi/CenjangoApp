@@ -39,13 +39,5 @@ class Migration(migrations.Migration):
                 ('error_repeat_app99', models.IntegerField()),
             ],
         ),
-        migrations.CreateModel(
-            name='temptab',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('cust_name', models.CharField(max_length=45)),
-                ('err_cnts', models.IntegerField()),
-                ('newerr_cnts', models.IntegerField()),
-            ],
-        ),
+
     ]

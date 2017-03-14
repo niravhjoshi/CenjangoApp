@@ -21,3 +21,6 @@ App1 Coun Errors Data
 http://127.0.0.1:8000/centurionapi/dwercnt?fields=appsrv_name,err_counts&appsrv_name=App1
 
 
+http://127.0.0.1:8000/logconfig/CustomerLoglocationapi?fields=cust_name,srv1_name_dir,srv2_name_dir,srv98_name_dir,srv99_name_dir,appsrv_tools_logpath,appsrv_localws_logpath&log_monitor=False
+
+http://127.0.0.1:8000/logconfig/CustomerLoglocationapi?fields=cust_name&log_monitor=False
