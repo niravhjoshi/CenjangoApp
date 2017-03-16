@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_nvd3',
     'LogConfiguration',
-    'LogStatus'
+    'LogStatus',
+    'ErrorsDict',
 ]
 
 MIDDLEWARE = [
