@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^jsonpiechart$',views.get_customererrpiechart,name='get_customererrpiechart'),
     url(r'^linewithfocuschart$',views.demo_linewithfocuschart,name='demo_linewithfocuschart'),
     url(r'^AppSrvErrs$',views.get_appsrvnameerrcntschart,name='AppSrvErrs'),
+    url(r'^detailerrs$',views.detail_errs_cust_pivot,{'title':'Detail Errors GroupChart',
+         'sidebar_items':'Charts Pivot',},name='DetailErrs'),
     url(r'^NewChart$',views.month_appsrv_cntsit,
         {'title':'Line Chart',
          'sidebar_items':'Charts w/ RawQuerySet',},

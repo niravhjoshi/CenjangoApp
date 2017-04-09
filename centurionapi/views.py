@@ -9,7 +9,7 @@ from itertools import groupby
 from collections import Counter,defaultdict
 from operator import itemgetter
 import operator
-from .models import datewiseerrcounts
+from .models import datewiseerrcounts,datewisedetailknownerrcounts
 import itertools
 from chartit import DataPool, Chart,PivotDataPool,PivotChart
 from .decorators import add_source_code_and_doc
@@ -42,6 +42,39 @@ def date_month_pivot(_,title,code,doc,sidebar_items):
 # end_code
 
     return render_to_response('centurionapi/graphs/DateWiseErr.html',
+                              {
+                                  'chart_list': pivcht,
+                                  'code': code,
+                                  'title': title,
+                                  'doc': doc,
+                                  'sidebar_items': sidebar_items})
+
+@add_source_code_and_doc
+def detail_errs_cust_pivot(_,title,code,doc,sidebar_items):
+    #start_code
+    ds = PivotDataPool(
+        series=[
+            {'options':{
+              'source':datewisedetailknownerrcounts.objects.all(),
+                'categories':[ 'err_name',
+                             'date_date',
+                             ],
+                'legend_by': 'appsrv_name'},
+                'terms': {'Total_ErrCounts': Sum('err_counts')
+            }}])
+
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': False,
+                'xAxis': 0,
+                'yAxis': 'err_name'},
+                'terms': ['Total_ErrCounts']}])
+# end_code
+
+    return render_to_response('centurionapi/graphs/DetailErrsRepo.html',
                               {
                                   'chart_list': pivcht,
                                   'code': code,
@@ -82,6 +115,7 @@ def cust_month_pivot(_,title,code,doc,sidebar_items):
                                   'title': title,
                                   'doc': doc,
                                   'sidebar_items': sidebar_items})
+
 
 
 @add_source_code_and_doc
