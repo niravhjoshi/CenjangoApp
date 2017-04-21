@@ -56,10 +56,10 @@ def detail_errs_cust_pivot(_,title,code,doc,sidebar_items):
         series=[
             {'options':{
               'source':datewisedetailknownerrcounts.objects.all(),
-                'categories':[ 'err_name',
-                             'date_date',
+                'categories':[ 'appsrv_name','cust_name'
+
                              ],
-                'legend_by': 'appsrv_name'},
+                'legend_by': 'err_name'},
                 'terms': {'Total_ErrCounts': Sum('err_counts')
             }}])
 
@@ -68,9 +68,9 @@ def detail_errs_cust_pivot(_,title,code,doc,sidebar_items):
         series_options=[
             {'options': {
                 'type': 'column',
-                'stacking': False,
-                'xAxis': 0,
-                'yAxis': 'err_name'},
+                'stacking': True,
+                'xAxis':0,
+                'yAxis':0 },
                 'terms': ['Total_ErrCounts']}])
 # end_code
 

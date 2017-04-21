@@ -3,29 +3,30 @@
 {% block jumobtron %}
 
 
-
 {% endblock %}
 
 {% block content %}
- <h2 class="sub-header">Errors Dictionary:</h2>
+<h2 class="sub-header">Customer Name:</h2>
           <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th>Error #:</th>
-                    <th>Error Name:</th>
+                  <th>CustomerID #:</th>
+                    <th>Customer Name:</th>
                 </tr>
 
                 </thead>
             <tbody>
-             {%  for errs in data %}
+             {%  for custlist in data %}
                  <tr>
-                  <td>{{ errs.id }}</td>
-                  <td><a href="SingleError/?err_name={{ errs.Error_name }}">{{ errs.Error_name }}</a></td>
+                  <td>{{ custlist.id }}</td>
+
+                  <td><a href="CustomerFilter.html">{{ custlist.cust_name }}</a> </td>
                  </tr>
             {% endfor %}
                 </tbody>
             </table>
           </div>
+
 
 {% endblock %}

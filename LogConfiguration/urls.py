@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^customeradd', views.customer_add,name='customeradd'),
     url(r'^errorsdict', views.Errors_Dict,name='errorsdict'),
     url(r'^LogLocation',views.NewLog_File,name='LogLocation'),
+    url(r'^ListofCust',views.customer_list,name='ListCustomers'),
     url(r'^CustomerLoglocationapi$',CustomerProdLogsLocaApi.as_view()),
 ]
