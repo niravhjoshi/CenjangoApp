@@ -33,12 +33,14 @@ def errorsdict_add(request):
 def Single_errors_graph2(request):
 
     errname= request.GET.get('err_name')
+    request.session['errnamesess'] = errname
+    print request.session['errnamesess']
     ds = PivotDataPool(
         series=[
             {'options': {
                 'source': datewisedetailknownerrcounts.objects.filter(err_name=errname),
-                'categories': ['appsrv_name', 'cust_name'],
-                'legend_by': 'cust_name'},
+                'categories': ['appsrv_name'],
+                'legend_by': 'appsrv_name'},
                 'terms': {'Total_ErrCounts': Sum('err_counts')
                           }}])
 
@@ -58,12 +60,112 @@ def Single_errors_graph2(request):
                               'chart_list': pivcht,
                               'code': "newcode",
                               'title': "SingleErrorChart",
-                              'doc': "NewDocString",
+                              'doc': "This Chart Displays selected error name pivot group by App Server Name",
+                              'sidebar_items': "SIdeBarItem"})
+
+
+def Single_errors_graph2_ViewByMonth(request):
+    if 'errnamesess' in request.session:
+        errname = request.session['errnamesess']
+    else:
+        print "SOmething wrong in session variable"
+    ds = PivotDataPool(
+        series=[
+            {'options': {
+                'source': datewisedetailknownerrcounts.objects.filter(err_name=errname),
+                'categories': ['month_name'],
+                'legend_by': 'month_name'},
+                'terms': {'Total_ErrCounts': Sum('err_counts')
+                          }}])
+
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0},
+                'terms': ['Total_ErrCounts']}])
+
+    # end_code
+    return render_to_response('ErrorsSingleGraph.html',
+                          {
+                              'chart_list': pivcht,
+                              'code': "newcode",
+                              'title': "Error View by Monthwise:-",
+                              'doc': "This Chart Displays selected error name pivot group by Month Name",
                               'sidebar_items': "SIdeBarItem"})
 
 
 
+def Single_errors_graph2_viewByDates(request):
+    if 'errnamesess' in request.session:
+        errname = request.session['errnamesess']
+    else:
+        print "SOmething wrong in session variable"
+    ds = PivotDataPool(
+        series=[
+            {'options': {
+                'source': datewisedetailknownerrcounts.objects.filter(err_name=errname),
+                'categories': ['date_date'],
+                'legend_by': 'date_date'},
+                'terms': {'Total_ErrCounts': Sum('err_counts')
+                          }}])
 
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0},
+                'terms': ['Total_ErrCounts']}])
+
+    # end_code
+    return render_to_response('ErrorsSingleGraph.html',
+                          {
+                              'chart_list': pivcht,
+                              'code': "newcode",
+                              'title': "Error view by Date:-",
+                              'doc': "This Chart Displays selected error name pivot group by Date",
+                              'sidebar_items': "SIdeBarItem"})
+
+
+
+def Single_errors_graph2_viewByCustomer(request):
+    if 'errnamesess' in request.session:
+        errname = request.session['errnamesess']
+    else:
+        print "SOmething wrong in session variable"
+    ds = PivotDataPool(
+        series=[
+            {'options': {
+                'source': datewisedetailknownerrcounts.objects.filter(err_name=errname),
+                'categories': ['cust_name'],
+                'legend_by': 'cust_name'},
+                'terms': {'Total_ErrCounts': Sum('err_counts')
+                          }}])
+
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0},
+                'terms': ['Total_ErrCounts']}])
+
+    # end_code
+    return render_to_response('ErrorsSingleGraph.html',
+                          {
+                              'chart_list': pivcht,
+                              'code': "newcode",
+                              'title': "Error view by Customer Name:-",
+                              'doc': "This Chart Displays selected error name pivot group by Customer Name",
+                              'sidebar_items': "SIdeBarItem"})
 
 
 

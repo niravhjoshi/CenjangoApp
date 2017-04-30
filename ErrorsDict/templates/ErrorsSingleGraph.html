@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {%block chart_loader_header %}
 		{% load chartit %}
 		{{ chart_list|load_charts:"c1" }}
@@ -9,10 +10,23 @@
 							{% load markup %}
 							<div class="section">
 								<h1> {{ title }}</h1>
-								<div id="c1"></div>
+  								<div id="c1"></div>
 								{% load markup %}
 								{{ doc|restructuredtext }}
 
 							</div>
 						</div>
+
+{% endblock %}
+{% block content %}
+
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Views of Errors Graph
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href={% url "SingleErrorbyMonth" %}>View by Month</a></li>
+    <li><a href={% url 'SingleErrorbyDates' %}>View by Date</a></li>
+    <li><a href={% url 'SingleErrorbyCust' %}>View by Customer</a></li>
+  </ul>
+</div>
 {% endblock %}
