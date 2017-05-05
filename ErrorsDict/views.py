@@ -169,7 +169,7 @@ def Single_errors_graph2_viewByCustomer(request):
 
 
 
-
+# List of Errors in to page
 def errorsdict_show(request):
     try:
         listofErrs = ErrorsDict.objects.all()
@@ -182,3 +182,4 @@ def errorsdict_show(request):
 def errorsdict_update(request):
     return render_to_response('errorsdictUpdate.html')
 
+#Function Based views and class based view  fucntion based views are more simpler.
