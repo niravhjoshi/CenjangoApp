@@ -10,21 +10,23 @@ from collections import Counter,defaultdict
 from operator import itemgetter
 import operator
 from .models import datewiseerrcounts,datewisedetailknownerrcounts
+from ErrorsDict.models import ErrorsDict
+
 import itertools
 from chartit import DataPool, Chart,PivotDataPool,PivotChart
 from .decorators import add_source_code_and_doc
 
 
 
-@add_source_code_and_doc
-def date_month_pivot(_,title,code,doc,sidebar_items):
+
+def date_month_pivot(request):
     #start_code
     ds = PivotDataPool(
         series=[
             {'options':{
               'source':datewiseerrcounts.objects.all(),
                 'categories':[
-
+                             'cust_name',
                              'month_name'],
                 'legend_by': 'date_stamp'},
                 'terms': {'Total_ErrCounts': Sum('err_counts')
@@ -44,10 +46,10 @@ def date_month_pivot(_,title,code,doc,sidebar_items):
     return render_to_response('centurionapi/graphs/DateWiseErr.html',
                               {
                                   'chart_list': pivcht,
-                                  'code': code,
-                                  'title': title,
-                                  'doc': doc,
-                                  'sidebar_items': sidebar_items})
+                                  'code': "code",
+                                  'title': "Error Counts by Each day of Months",
+                                  'doc': "This chart represent errors count by each day of months",
+                                  'sidebar_items': "sidebars"})
 
 @add_source_code_and_doc
 def detail_errs_cust_pivot(_,title,code,doc,sidebar_items):
@@ -83,8 +85,8 @@ def detail_errs_cust_pivot(_,title,code,doc,sidebar_items):
                                   'sidebar_items': sidebar_items})
 
 
-@add_source_code_and_doc
-def cust_month_pivot(_,title,code,doc,sidebar_items):
+
+def cust_month_pivot(request):
     #start_code
     ds = PivotDataPool(
         series=[
@@ -111,15 +113,15 @@ def cust_month_pivot(_,title,code,doc,sidebar_items):
     return render_to_response('centurionapi/graphs/CustPivotChart.html',
                               {
                                   'chart_list': pivcht,
-                                  'code': code,
-                                  'title': title,
-                                  'doc': doc,
-                                  'sidebar_items': sidebar_items})
+                                  'code': "newcode",
+                                  'title': "Sum Errors Counts by Customer Name",
+                                  'doc': 'Total Errors Counts by Customer Name',
+                                  'sidebar_items': "sidebaritems"})
 
 
 
-@add_source_code_and_doc
-def appsrv_month_pivot(_,title,code,doc,sidebar_items):
+
+def appsrv_month_pivot(request):
     #start_code
     ds = PivotDataPool(
         series=[
@@ -146,14 +148,14 @@ def appsrv_month_pivot(_,title,code,doc,sidebar_items):
     return render_to_response('centurionapi/graphs/AppsrvPivotChart.html',
                               {
                                   'chart_list': pivcht,
-                                  'code': code,
-                                  'title': title,
-                                  'doc': doc,
-                                  'sidebar_items': sidebar_items})
+                                  'code': 'AppserverChart',
+                                  'title': 'Application Server Wise Error Reports',
+                                  'doc': "This Chart Displays selected error Counts by Application Server name ",
+                                  'sidebar_items': "SIdeBarItem"})
 
 
-@add_source_code_and_doc
-def month_appsrv_pivot(_,title,code,doc,sidebar_items):
+
+def month_appsrv_pivot(request):
     # start_code
     ds = PivotDataPool(
           series=[
@@ -180,10 +182,10 @@ def month_appsrv_pivot(_,title,code,doc,sidebar_items):
     return render_to_response('centurionapi/graphs/MonthPivotChart.html',
                               {
                                   'chart_list': pivcht,
-                                  'code': code,
-                                  'title': title,
-                                  'doc': doc,
-                                  'sidebar_items': sidebar_items})
+                                  'code': "code",
+                                  'title': "Months Wise Errors Count by Customer Name",
+                                  'doc': "This graphs shows month wise error counts for each customer",
+                                  'sidebar_items': "sidebar"})
 
 
 @add_source_code_and_doc

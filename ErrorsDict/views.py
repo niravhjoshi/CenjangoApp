@@ -19,15 +19,46 @@ import itertools
 from chartit import DataPool, Chart,PivotDataPool,PivotChart
 from centurionapi.decorators import add_source_code_and_doc
 
-
-
-
-
-
-
 # Create your views here.
 def errorsdict_add(request):
     return render_to_response('errorsdictAdd.html')
+
+
+def errorsdetPie(request):
+    ds = DataPool(
+        series=[
+            {
+                'options': {
+                    'source': datewisedetailknownerrcounts.objects.values('err_name').annotate(
+                        sumerrcnts=Sum('err_counts'))},
+                'terms': [
+                    'err_name', 'sumerrcnts'
+                ]
+            }
+        ]
+    )
+
+    cht = Chart(
+        datasource=ds,
+        series_options=[
+            {
+                'options': {
+                    'type': 'pie', 'stacking': False,
+                    'options3d': {'enabled': True, 'alpha': 45, 'beta': 0}
+                }, 'terms': {'err_name': ['sumerrcnts']}
+            }
+        ],
+        chart_options={
+            'title': {'text': 'DetailErrors Report - Pie Chart'}
+        }
+    )
+    return render(request, 'ErrDetailDatapiechart.html',{
+                              'chart_list': cht,
+                              'code': "newcode",
+                              'title': "Detailed Error Pie Chart",
+                              'doc': "This Chart Pie Chart for Detailed Errror Messages sum by Error Counts",
+                              'sidebar_items': "SIdeBarItem"})
+
 
 
 def Single_errors_graph2(request):

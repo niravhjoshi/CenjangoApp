@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^centurionapi/',include('centurionapi.urls')),
     url(r'^logconfig/',include('LogConfiguration.urls')),
     url(r'^logstatus/',include('LogStatus.urls')),
-    url(r'^errorsdict/',include('ErrorsDict.urls')),
+    url(r'^errorsdict/',include('ErrorsDict.urls'),name='errorsdict'),
 
 ]
 

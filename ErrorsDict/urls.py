@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^singlerrorbymonth/$',views.Single_errors_graph2_ViewByMonth,name='SingleErrorbyMonth'),
     url(r'^singlerrorbycust/$', views.Single_errors_graph2_viewByCustomer, name='SingleErrorbyCust'),
     url(r'^singlerrorbydates/$', views.Single_errors_graph2_viewByDates, name='SingleErrorbyDates'),
+    url(r'^errjsonpiechart$',views.errorsdetPie,name='errors_pie'),
 
     #url(r'^SingleError/(?P<any>\w+)/$',views.Single_errors_graph1,name='SingleErrCnt'),
     #url(r'^SingleError/(?P<q>\w+)/$',views.Single_errors_graph1,{'title':'Single Errors Chart','sidebar_items':'Charts Pivot'},name="SingleErrCnt"),

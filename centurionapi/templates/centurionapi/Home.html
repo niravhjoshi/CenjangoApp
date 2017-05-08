@@ -1,15 +1,45 @@
 {% extends 'base.html' %}
 
 {% block jumobtron %}
-
-        <div class="jumbotron">
-        <h1>Welcome to Project Centurion</h1>
-        <p>This is a project Centurion Log Analysis project for JBoss Application Server logs. Use it as a starting point to create something more unique by building on or modifying it.</p>
-      </div>
+  <div class="ism-slider" id="my-slider">
+  <ol>
+    <li>
+      <img src="/media/slides/aircraft-479772_1280.jpg">
+      <div class="ism-caption ism-caption-0">Welcome to Log Analysis Project.</div>
+    </li>
+    <li>
+      <img src="/media/slides/beautiful-701678_1280.jpg">
+      <div class="ism-caption ism-caption-0">JBoss Log Analysis</div>
+    </li>
+    <li>
+      <img src="/media/slides/mars-67522_1280.jpg">
+      <div class="ism-caption ism-caption-0">Visualization and Status Center</div>
+    </li>
+  </ol>
+</div>
 
 {% endblock %}
 
 {% block content %}
+ <!-- First Featurette -->
+        <div class="featurette" id="about">
+            <img class="featurette-image img-circle img-responsive pull-right" src="/static/media/Graphs.jpeg">
+            <h2 class="featurette-heading">Welcome Log Analysis Visualization and Automation Log munching site.
+                <span class="text-muted">Get what is meaning full from logs  </span>
+            </h2>
+            <p class="lead">Web log analysis software (also called a web log analyzer) is a kind of web analytics software that parses a server log file from a web server, and based on the values contained in the log file, derives indicators about when, how, and by whom a web server is visited.</p>
+        </div>
 
-<h1>Hello World</h1>
+        <hr class="featurette-divider">
+
+ <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Nirav Joshi May-2017</p>
+                </div>
+            </div>
+        </footer>
+
+
 {% endblock %}

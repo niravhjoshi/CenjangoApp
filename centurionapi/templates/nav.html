@@ -23,11 +23,18 @@
                 <li><a href="{% url 'CustPivotChart' %}">Customer Errors Report</a></li>
                 <li><a href="{% url 'MonthPivotChart' %}">Month Errors Report</a></li>
                <li><a href="{% url 'DatePivotChart' %}">Day Wise Error Report</a></li>
-                <li><a href="#">Filter Report</a></li>
+
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More... <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Detailed Error Graphs<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'errordictshow' %}">Detailed Error Report </a></li>
+                  <li><a href="{% url 'errors_pie' %}"> Errors Distribution Chart </a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Command Center<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="munchjblogs.html">Munch JBoss Logs</a></li>
                 <li><a href="culist.html">Customer List</a></li>
