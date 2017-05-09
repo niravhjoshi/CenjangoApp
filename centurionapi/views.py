@@ -51,8 +51,8 @@ def date_month_pivot(request):
                                   'doc': "This chart represent errors count by each day of months",
                                   'sidebar_items': "sidebars"})
 
-@add_source_code_and_doc
-def detail_errs_cust_pivot(_,title,code,doc,sidebar_items):
+
+def detail_errs_cust_pivot(request):
     #start_code
     ds = PivotDataPool(
         series=[
@@ -79,10 +79,10 @@ def detail_errs_cust_pivot(_,title,code,doc,sidebar_items):
     return render_to_response('centurionapi/graphs/DetailErrsRepo.html',
                               {
                                   'chart_list': pivcht,
-                                  'code': code,
-                                  'title': title,
-                                  'doc': doc,
-                                  'sidebar_items': sidebar_items})
+                                  'code': "code",
+                                  'title': "Error Count Chart Based on Customer",
+                                  'doc': "This chart shows error name and its counts against each customer.",
+                                  'sidebar_items': "sidebar_items"})
 
 
 
@@ -186,58 +186,6 @@ def month_appsrv_pivot(request):
                                   'title': "Months Wise Errors Count by Customer Name",
                                   'doc': "This graphs shows month wise error counts for each customer",
                                   'sidebar_items': "sidebar"})
-
-
-@add_source_code_and_doc
-def month_appsrv_cntsit(_,title,code,doc,sidebar_items):
-    # start_code
-    ds = DataPool(
-            series=[{
-                'options': {
-                    'source': datewiseerrcounts.objects.all()
-                },
-                'terms': [
-                    'cust_name',
-                    'err_counts',
-                    'month_name','appsrv_name'
-
-                ]
-            }]
-    )
-
-    cht = Chart(
-            datasource=ds,
-            series_options=[{
-                'options': {
-                    'type': 'line',
-                    'stacking': False
-                },
-                'terms': {
-                    'month_name': [
-                        'err_counts'
-
-                    ]
-                }
-            }],
-            chart_options={
-                'title': {
-                    'text': 'Error Data For JBoss Log Analysis'
-                },
-                'xAxis': {
-                    'title': {
-                        'text': 'customer Name'
-                    }
-                }
-            }
-    )
-    # end_code
-    return render_to_response('centurionapi/graphs/NewChart.html',
-                              {
-                                'chart_list': cht,
-                                'code': code,
-                                'title': title,
-                                'doc': doc,
-                                'sidebar_items': sidebar_items})
 
 
 
